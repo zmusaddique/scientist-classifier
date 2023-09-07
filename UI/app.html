@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientist Classifier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./dropzone.min.css">
+    <link rel="stylesheet" href="./app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body class="mx-5">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img class="mx-1" src="./images/logo.png" alt="Bootstrap" width="30">
+            Scientist Classifier
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li> 
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col card-wrapper" data-player="APJ_Abdul_Kalam">
+                <div class="col" style="width: 18rem;" >
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto mt-2 custom-circle-image">
+                        <img src="./images/apj.jpg" class="w-100 h-100" alt="...">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                    <h5 class="card-title">Dr. APJ Abdul Kalam</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col card-wrapper" data-player="Richard_Feynman">
+                <div class="col" style="width: 18rem;" >
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto mt-2 custom-circle-image">
+                        <img src="./images/feynman.jpg" class="w-100 h-100" alt="...">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                    <h5 class="card-title">Richard Feynman</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col card-wrapper" data-player="CV_Raman">
+                <div class="col" style="width: 18rem;" >
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto mt-2 custom-circle-image">
+                        <img src="./images/cvraman.jpg" class="w-100 h-100" alt="...">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                    <h5 class="card-title">Sir CV Raman</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col card-wrapper" data-player="Albert_Einstein">
+                <div class="col" style="width: 18rem;" >
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto mt-2 custom-circle-image">
+                        <img src="./images/albert.jpg" class="w-100 h-100" alt="...">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                    <h5 class="card-title">Albert Einstein</h5>
+                    </div>
+                </div>
+            </div>         
+            
+            <div class="col card-wrapper" data-player="Nikola_Tesla">
+                <div class="col" style="width: 18rem;" >
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto mt-2 custom-circle-image">
+                        <img src="./images/tesla.jpg" class="w-100 h-100" alt="...">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                    <h5 class="card-title">Nikola Tesla</h5>
+                    </div>
+                </div>
+            </div> 
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <form action="/file-upload" class="dropzone" id="dropzone">
+                            <div class="dz-message needsclick">
+                                <img src="./images/upload.png" width="50vw" height="50vw"><br>
+                                <span class="note needsclick">Drop files here or click to upload</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 mx-auto">
+                        <button id="submitBtn" type="button" class="btn btn-success">Classify</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-8 error" id="error" >
+                <p>Can't classify image. Classifier was not able to detect face and two eyes properly</p>    
+            </div>
+
+            <div class="col-sm-4" id="resultHolder">
+            </div>
+            <div class="col-sm-4" id="divClassTable">
+                <table id="classTable">
+                        <tr>
+                            <th>Scientist</th>
+                            <th>Probability Score</th>
+                        </tr>
+                        <tr>
+                            <td>Dr. APJ Abdul Kalam</td>
+                            <td id="score_APJ_Abdul_Kalam"></td>
+                        </tr>
+                        <tr>
+                            <td>Richard Feynman</td>
+                            <td id="score_Richard_Feynman"></td>
+                        </tr>
+                        <tr>
+                            <td>Sir CV Raman</td>
+                            <td id="score_CV_Raman"></td>
+                        </tr>
+                        <tr>
+                            <td>Albert Einstein</td>
+                            <td id="score_Albert_Einstein"></td>
+                        </tr>
+                        <tr>
+                            <td>Nikola Tesla</td>
+                            <td id="score_Nikola_Tesla"></td>
+                        </tr>
+                </table>
+            </div>
+            
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="./dropzone.min.js"></script>
+<script src="./app.js"></script>
+</html>
